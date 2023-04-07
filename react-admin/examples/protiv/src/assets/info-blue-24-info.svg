@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>3279708D-C59F-4878-95B2-587B6776213A</title>
+    <g id="yuvraj" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.2-ProPay-info-message" transform="translate(-356.000000, -240.000000)">
+            <g id="info-message" transform="translate(336.000000, 220.000000)">
+                <g id="info_black_24dp" transform="translate(20.000000, 20.000000)">
+                    <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                    <path d="M12,4 C7.584,4 4,7.584 4,12 C4,16.416 7.584,20 12,20 C16.416,20 20,16.416 20,12 C20,7.584 16.416,4 12,4 Z M12.8,16 L11.2,16 L11.2,11.2 L12.8,11.2 L12.8,16 Z M12.8,9.6 L11.2,9.6 L11.2,8 L12.8,8 L12.8,9.6 Z" id="Shape" fill="#3199FF" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 400;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Book.otf') format('opentype');
+}
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 500;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 700;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Bold.otf') format('opentype');
+}
+
+
+@font-face {
+  font-family: 'Opificio';
+  font-weight: 400;
+  font-style: normal;
+  src: local('Opificio'), url('Opificio_rounded.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Opificio';
+  font-weight: 500;
+  font-style: normal;
+  src: local('Opificio'), url('Opificio_light_rounded.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Opificio';
+  font-weight: 700;
+  font-style: normal;
+  src: local('Opificio'), url('Opificio_Bold_rounded.ttf') format('opentype');
+}

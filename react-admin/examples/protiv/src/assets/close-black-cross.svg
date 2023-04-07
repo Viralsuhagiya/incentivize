@@ -1,0 +1,25 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" width="25" height="24">
+	<title>close-black-24-dp-svg</title>
+	<style>
+		.s0 { fill: none } 
+		.s1 { fill: #8c8c8c } 
+	</style>
+	<filter id="f0">
+		<feFlood flood-color="#000000" flood-opacity="1" />
+		<feBlend mode="normal" in2="SourceGraphic"/>
+		<feComposite in2="SourceAlpha" operator="in" />
+	</filter>
+	<g id="Layer" filter="url(#f0)">
+		<path id="Layer" class="s0" d="m0.7 0h24v24h-24z"/>
+		<path id="Layer" class="s1" d="m17.7 8l-1-1-4 4-4-4-1 1 4 4-4 4 1 1 4-4 4 4 1-1-4-4z"/>
+	</g>
+	<filter id="f1">
+		<feFlood flood-color="#000000" flood-opacity="1" />
+		<feBlend mode="normal" in2="SourceGraphic"/>
+		<feComposite in2="SourceAlpha" operator="in" />
+	</filter>
+	<g id="Layer copy 3" filter="url(#f1)">
+		<path id="Layer" class="s0" d="m0.7 0h24v24h-24z"/>
+		<path id="Layer" class="s1" d="m17.7 8l-1-1-4 4-4-4-1 1 4 4-4 4 1 1 4-4 4 4 1-1-4-4z"/>
+	</g>
+</svg>

@@ -1,0 +1,834 @@
+{
+    "kind": "Document",
+    "definitions": [
+        {
+            "kind": "OperationDefinition",
+            "operation": "query",
+            "selectionSet": {
+                "kind": "SelectionSet",
+                "selections": [
+                    {
+                        "kind": "Field",
+                        "name": {
+                            "kind": "Name",
+                            "value": "allPayrolls"
+                        },
+                        "alias": {
+                            "kind": "Name",
+                            "value": "items"
+                        },
+                        "arguments": [
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "filter"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "filter"
+                                    }
+                                }
+                            },
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "perPage"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "perPage"
+                                    }
+                                }
+                            },
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "page"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "page"
+                                    }
+                                }
+                            },
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "sortField"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "sortField"
+                                    }
+                                }
+                            },
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "sortOrder"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "sortOrder"
+                                    }
+                                }
+                            }
+                        ],
+                        "directives": null,
+                        "selectionSet": {
+                            "kind": "SelectionSet",
+                            "selections": [
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_ot_rate"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_ot_amt"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "ot_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "employee_name"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "payroll_name"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "name"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "net_earning"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "net_rate"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "base_rate"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "base_earning"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "employee_id_obj"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "employee_id"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "period_id_obj"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "period_id"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "period_status"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "start_date"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "end_date"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "company_id_obj"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "company_id"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "attendance_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "attendance_only_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "performance_bonus_only_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "lead_pay_bonus_only_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_worked_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "has_overtime"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "status"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "leave_allocation_line_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_leaves_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_leaves_amount"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "performance_bonus"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "number"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "payroll_number"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "break_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "regular_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "regular_earning"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "regular_rate"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_earning"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "non_propay_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "total_propay_hours"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "bonus_ot_diff_amt"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "avg_overtime_multiplier"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "bonus_earning"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "overtime_input_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "retro_earning"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "retro_overtime"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "retro_attendance_only_ids"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "retro_gross_earnings"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "id"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "display_name"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "create_uid_obj"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "create_uid"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "create_date"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "write_uid_obj"
+                                    },
+                                    "alias": null,
+                                    "arguments": null,
+                                    "directives": null,
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": {
+                                                    "kind": "Name",
+                                                    "value": "id"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "write_uid"
+                                    }
+                                },
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "write_date"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "kind": "Field",
+                        "name": {
+                            "kind": "Name",
+                            "value": "_allPayrollsMeta"
+                        },
+                        "alias": {
+                            "kind": "Name",
+                            "value": "total"
+                        },
+                        "arguments": [
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "filter"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "filter"
+                                    }
+                                }
+                            },
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "perPage"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "perPage"
+                                    }
+                                }
+                            },
+                            {
+                                "kind": "Argument",
+                                "name": {
+                                    "kind": "Name",
+                                    "value": "page"
+                                },
+                                "value": {
+                                    "kind": "Variable",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "page"
+                                    }
+                                }
+                            }
+                        ],
+                        "directives": null,
+                        "selectionSet": {
+                            "kind": "SelectionSet",
+                            "selections": [
+                                {
+                                    "kind": "Field",
+                                    "name": {
+                                        "kind": "Name",
+                                        "value": "count"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "name": {
+                "kind": "Name",
+                "value": "allPayrolls"
+            },
+            "variableDefinitions": [
+                {
+                    "kind": "VariableDefinition",
+                    "variable": {
+                        "kind": "Variable",
+                        "name": {
+                            "kind": "Name",
+                            "value": "filter"
+                        }
+                    },
+                    "type": {
+                        "kind": "NamedType",
+                        "name": {
+                            "kind": "Name",
+                            "value": "PayrollFilter"
+                        }
+                    }
+                },
+                {
+                    "kind": "VariableDefinition",
+                    "variable": {
+                        "kind": "Variable",
+                        "name": {
+                            "kind": "Name",
+                            "value": "perPage"
+                        }
+                    },
+                    "type": {
+                        "kind": "NamedType",
+                        "name": {
+                            "kind": "Name",
+                            "value": "Int"
+                        }
+                    }
+                },
+                {
+                    "kind": "VariableDefinition",
+                    "variable": {
+                        "kind": "Variable",
+                        "name": {
+                            "kind": "Name",
+                            "value": "page"
+                        }
+                    },
+                    "type": {
+                        "kind": "NamedType",
+                        "name": {
+                            "kind": "Name",
+                            "value": "Int"
+                        }
+                    }
+                },
+                {
+                    "kind": "VariableDefinition",
+                    "variable": {
+                        "kind": "Variable",
+                        "name": {
+                            "kind": "Name",
+                            "value": "sortField"
+                        }
+                    },
+                    "type": {
+                        "kind": "NamedType",
+                        "name": {
+                            "kind": "Name",
+                            "value": "String"
+                        }
+                    }
+                },
+                {
+                    "kind": "VariableDefinition",
+                    "variable": {
+                        "kind": "Variable",
+                        "name": {
+                            "kind": "Name",
+                            "value": "sortOrder"
+                        }
+                    },
+                    "type": {
+                        "kind": "NamedType",
+                        "name": {
+                            "kind": "Name",
+                            "value": "String"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

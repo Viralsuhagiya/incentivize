@@ -1,0 +1,109 @@
+import { ReactNode } from 'react';
+import { Icon, IconifyIcon } from '@iconify/react';
+import { SnackbarProvider } from 'notistack';
+import infoFill from '@iconify/icons-eva/info-fill';
+import alertCircleFill from '@iconify/icons-eva/alert-circle-fill';
+import alertTriangleFill from '@iconify/icons-eva/alert-triangle-fill';
+import checkmarkCircle2Fill from '@iconify/icons-eva/checkmark-circle-2-fill';
+// material
+import { alpha, useTheme } from '@mui/material/styles';
+import { Box, GlobalStyles } from '@mui/material';
+// @types
+import { ColorSchema } from '../@types/theme';
+import { NUMBER } from '../utils/Constants/MagicNumber';
+
+// ----------------------------------------------------------------------
+
+function SnackbarStyles() {
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
+
+  return (
+    <GlobalStyles
+      styles={{
+        '#root': {
+          '& .SnackbarContent-root': {
+            width: '100%',
+            padding: theme.spacing(NUMBER.ONE_POINT_FIVE),
+            margin: theme.spacing(NUMBER.ZERO_POINT_TWENTY_FIVE, 0),
+            boxShadow: theme.customShadows.z8,
+            borderRadius: theme.shape.borderRadius,
+            color: theme.palette.grey[isLight ? 0 : NUMBER.EIGHT_HUNDRED],
+            backgroundColor: theme.palette.grey[isLight ? NUMBER.NINE_HUNDRED : 0],
+            '&.SnackbarItem-variantSuccess, &.SnackbarItem-variantError, &.SnackbarItem-variantWarning, &.SnackbarItem-variantInfo':
+              {
+                color: theme.palette.text.primary,
+                backgroundColor: theme.palette.background.paper
+              }
+          },
+          '& .SnackbarItem-message': {
+            padding: '0 !important',
+            fontWeight: theme.typography.fontWeightMedium
+          },
+          '& .SnackbarItem-action': {
+            marginRight: 0,
+            color: theme.palette.action.active,
+            '& svg': { width: 20, height: 20 }
+          }
+        }
+      }}
+    />
+  );
+}
+
+type SnackbarIconProps = {
+  icon: IconifyIcon;
+  color: ColorSchema;
+};
+
+function SnackbarIcon({ icon, color }: SnackbarIconProps) {
+  return (
+    <Box
+      component="span"
+      sx={{
+        mr: 1.5,
+        width: 40,
+        height: 40,
+        display: 'flex',
+        borderRadius: 1.5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: `${color}.main`,
+        bgcolor: (theme) => alpha(theme.palette[color].main, NUMBER.ZERO_POINT_ONE_SIX)
+      }}
+    >
+      <Icon icon={icon} width={24} height={24} fr=''/>
+    </Box>
+  );
+}
+
+type NotistackProviderProps = {
+  children: ReactNode;
+};
+
+export default function NotistackProvider({ children }: NotistackProviderProps) {
+  return (
+    <>
+      <SnackbarStyles />
+
+      <SnackbarProvider
+        dense
+        maxSnack={5}
+        // preventDuplicate
+        autoHideDuration={3000}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right'
+        }}
+        iconVariant={{
+          success: <SnackbarIcon icon={checkmarkCircle2Fill} color="success" />,
+          error: <SnackbarIcon icon={infoFill} color="error" />,
+          warning: <SnackbarIcon icon={alertTriangleFill} color="warning" />,
+          info: <SnackbarIcon icon={alertCircleFill} color="info" />
+        }}
+      >
+        {children}
+      </SnackbarProvider>
+    </>
+  );
+}

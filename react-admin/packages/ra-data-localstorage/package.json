@@ -1,0 +1,48 @@
+{
+    "name": "ra-data-local-storage",
+    "version": "4.0.0-alpha.0",
+    "description": "Local storage data provider for react-admin",
+    "main": "dist/index",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "sideEffects": false,
+    "files": [
+        "LICENSE",
+        "*.md",
+        "dist",
+        "src"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marmelab/react-admin.git"
+    },
+    "keywords": [
+        "reactjs",
+        "react",
+        "react-admin",
+        "rest",
+        "fakerest",
+        "local"
+    ],
+    "author": "François Zaninotto",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/marmelab/react-admin/issues"
+    },
+    "homepage": "https://github.com/marmelab/react-admin#readme",
+    "scripts": {
+        "build": "tsup src/index.ts --silent --clean --format cjs,esm --minify --keep-names --metafile --sourcemap --dts --legacy-output",
+        "watch": "tsup src/index.ts --silent --clean --format cjs,esm --minify --keep-names --metafile --sourcemap --dts --legacy-output --watch"
+    },
+    "dependencies": {
+        "lodash": "~4.17.5",
+        "ra-data-fakerest": "^4.0.0-alpha.0"
+    },
+    "devDependencies": {
+        "cross-env": "^5.2.0",
+        "rimraf": "^2.6.3"
+    },
+    "peerDependencies": {
+        "ra-core": "^4.0.0-alpha.0"
+    }
+}

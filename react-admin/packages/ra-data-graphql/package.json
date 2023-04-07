@@ -1,0 +1,47 @@
+{
+    "name": "ra-data-graphql",
+    "version": "4.0.0-alpha.0",
+    "description": "A GraphQL data provider for react-admin",
+    "main": "dist/index",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marmelab/react-admin.git"
+    },
+    "bugs": {
+        "url": "https://github.com/marmelab/react-admin/issues"
+    },
+    "homepage": "https://github.com/marmelab/react-admin#readme",
+    "authors": [
+        "Gildas Garcia"
+    ],
+    "keywords": [
+        "reactjs",
+        "react",
+        "react-admin",
+        "admin-on-rest",
+        "rest",
+        "graphql"
+    ],
+    "license": "MIT",
+    "scripts": {
+        "build": "tsup src/index.ts --silent --clean --format cjs,esm --minify --keep-names --metafile --sourcemap --dts --legacy-output",
+        "watch": "tsup src/index.ts --silent --clean --format cjs,esm --minify --keep-names --metafile --sourcemap --dts --legacy-output --watch"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.3.19",
+        "lodash": "~4.17.5",
+        "pluralize": "~7.0.0"
+    },
+    "peerDependencies": {
+        "graphql": "^15.6.0",
+        "ra-core": "^4.0.0-alpha.0"
+    },
+    "devDependencies": {
+        "cross-env": "^5.2.0",
+        "graphql": "^15.6.0",
+        "rimraf": "^2.6.3"
+    }
+}

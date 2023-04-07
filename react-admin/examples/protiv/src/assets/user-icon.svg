@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="74" height="74" rx="4"></rect>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-24.000000, -24.000000)">
+            <g id="Group" transform="translate(24.000000, 24.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#F1F1F1" xlink:href="#path-1"></use>
+                <path d="M37,46.0357143 C45.2875,46.0357143 52,39.3152232 52,31.0178571 C52,22.7204911 45.2875,16 37,16 C28.7125,16 22,22.7204911 22,31.0178571 C22,39.3152232 28.7125,46.0357143 37,46.0357143 Z M37,51.4732143 C26.9875,51.4732143 7,56.5041964 7,66.4910714 L7,74 L67,74 L67,66.4910714 C67,56.5041964 47.0125,51.4732143 37,51.4732143 Z" id="Shape" fill="#C7C7C7" fill-rule="nonzero" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

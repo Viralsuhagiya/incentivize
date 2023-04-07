@@ -1,0 +1,33 @@
+{
+    "name": "ra-data-json-server",
+    "version": "4.0.0-alpha.0",
+    "description": "JSON Server data provider for react-admin",
+    "main": "dist/index",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "sideEffects": false,
+    "files": [
+        "*.md",
+        "dist",
+        "src"
+    ],
+    "authors": [
+        "François Zaninotto"
+    ],
+    "repository": "marmelab/react-admin",
+    "homepage": "https://github.com/marmelab/react-admin#readme",
+    "bugs": "https://github.com/marmelab/react-admin/issues",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsup src/index.ts --silent --clean --format cjs,esm --minify --keep-names --metafile --sourcemap --dts --legacy-output",
+        "watch": "tsup src/index.ts --silent --clean --format cjs,esm --minify --keep-names --metafile --sourcemap --dts --legacy-output --watch"
+    },
+    "dependencies": {
+        "query-string": "^5.1.1",
+        "ra-core": "^4.0.0-alpha.0"
+    },
+    "devDependencies": {
+        "cross-env": "^5.2.0",
+        "rimraf": "^2.6.3"
+    }
+}
