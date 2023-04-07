@@ -1,0 +1,89 @@
+{
+  "testauth": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-protiv-testauth-60625-authRole",
+      "UnauthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-testauth-60625-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-testauth-60625-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-protiv-testauth-60625-deployment",
+      "UnauthRoleName": "amplify-protiv-testauth-60625-unauthRole",
+      "StackName": "amplify-protiv-testauth-60625",
+      "StackId": "arn:aws:cloudformation:us-east-1:016290163628:stack/amplify-protiv-testauth-60625/272969f0-d415-11ec-af96-0ec3155f02e1",
+      "AmplifyAppId": "d2qksd9d6escp7",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-protiv-testauth-60625-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "function": {
+        "protiv1a651b11PostAuthentication": {},
+        "protiv7b7aef377b7aef37UserMigration": {
+          "deploymentBucketName": "amplify-protiv-testauth-60625-deployment",
+          "s3Key": "amplify-builds/protiv7b7aef377b7aef37UserMigration-44462b6b4c4f66742f47-build.zip"
+        }
+      },
+      "auth": {
+        "protivf5e3b9b1f5e3b9b1": {},
+        "protiv7b7aef377b7aef37": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-protiv-prod-120122-authRole",
+      "UnauthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-prod-120122-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-prod-120122-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-protiv-prod-120122-deployment",
+      "UnauthRoleName": "amplify-protiv-prod-120122-unauthRole",
+      "StackName": "amplify-protiv-prod-120122",
+      "StackId": "arn:aws:cloudformation:us-east-1:016290163628:stack/amplify-protiv-prod-120122/6d5b3c70-78f1-11ec-9dc2-0a564108347f",
+      "AmplifyAppId": "d2qksd9d6escp7"
+    },
+    "categories": {
+      "auth": {
+        "protiv7b7aef377b7aef37": {}
+      },
+      "function": {
+        "protiv7b7aef377b7aef37UserMigration": {
+          "deploymentBucketName": "amplify-protiv-prod-120122-deployment",
+          "s3Key": "amplify-builds/protiv7b7aef377b7aef37UserMigration-466a51772f7239503767-build.zip"
+        }
+      }
+    }
+  },
+  "test": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-protiv-test-224704-authRole",
+      "UnauthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-test-224704-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-test-224704-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-protiv-test-224704-deployment",
+      "UnauthRoleName": "amplify-protiv-test-224704-unauthRole",
+      "StackName": "amplify-protiv-test-224704",
+      "StackId": "arn:aws:cloudformation:us-east-1:016290163628:stack/amplify-protiv-test-224704/750ee100-7d39-11ec-a544-0aec52a2ca3b",
+      "AmplifyAppId": "d2qksd9d6escp7"
+    },
+    "categories": {
+      "auth": {
+        "protiv7b7aef377b7aef37": {}
+      }
+    }
+  },
+  "testkiwi": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-protiv-testkiwi-101559-authRole",
+      "UnauthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-testkiwi-101559-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::016290163628:role/amplify-protiv-testkiwi-101559-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-protiv-testkiwi-101559-deployment",
+      "UnauthRoleName": "amplify-protiv-testkiwi-101559-unauthRole",
+      "StackName": "amplify-protiv-testkiwi-101559",
+      "StackId": "arn:aws:cloudformation:us-east-1:016290163628:stack/amplify-protiv-testkiwi-101559/9319c230-6a20-11ed-a5ab-0e1d74fa62eb",
+      "AmplifyAppId": "d2qksd9d6escp7"
+    },
+    "categories": {
+      "auth": {
+        "protiv7b7aef377b7aef37": {}
+      }
+    }
+  }
+}

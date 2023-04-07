@@ -1,0 +1,486 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "hostingS3AndCloudFrontRegion": {
+      "Type": "String",
+      "Description": "Input parameter describing Region attribute for hosting/S3AndCloudFront resource"
+    },
+    "hostingS3AndCloudFrontHostingBucketName": {
+      "Type": "String",
+      "Description": "Input parameter describing HostingBucketName attribute for hosting/S3AndCloudFront resource"
+    },
+    "hostingS3AndCloudFrontWebsiteURL": {
+      "Type": "String",
+      "Description": "Input parameter describing WebsiteURL attribute for hosting/S3AndCloudFront resource"
+    },
+    "hostingS3AndCloudFrontS3BucketSecureURL": {
+      "Type": "String",
+      "Description": "Input parameter describing S3BucketSecureURL attribute for hosting/S3AndCloudFront resource"
+    }
+  },
+  "Conditions": {
+    "CreateProdResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "prod"
+      ]
+    },
+    "CreateTestResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "test"
+      ]
+    },
+    "CreateTestAuthResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "testauth"
+      ]
+    },
+    "CreateTestKiwiResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "testkiwi"
+      ]
+    }
+  },
+  "Resources": {
+    "PrivateBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "DependsOn": "OriginAccessIdentity",
+      "Properties": {
+        "PolicyDocument": {
+          "Id": "MyPolicy",
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "APIReadForGetBucketObjects",
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "OriginAccessIdentity",
+                    "S3CanonicalUserId"
+                  ]
+                }
+              },
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "hostingS3AndCloudFrontHostingBucketName"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "Bucket": {
+          "Ref": "hostingS3AndCloudFrontHostingBucketName"
+        }
+      }
+    },
+    "OriginAccessIdentity": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "CloudFrontOriginAccessIdentityConfig"
+        }
+      }
+    },
+    "CloudFrontDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "DependsOn": [
+        "PrivateBucketPolicy",
+        "OriginAccessIdentity"
+      ],
+      "Properties": {
+        "DistributionConfig": {
+          "HttpVersion": "http2",
+          "Aliases": [
+            {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::If": [
+                      "CreateProdResources",
+                      "",
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Ref": "env"
+                            },
+                            "."
+                          ]
+                        ]
+                      }
+                    ]
+                  },
+                  "app.protiv.com"
+                ]
+              ]
+            }
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": "arn:aws:acm:us-east-1:016290163628:certificate/51c5c0fe-c9c9-4e2c-8c04-11b3108a2721",
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
+          },
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::Select": [
+                  1,
+                  {
+                    "Fn::Split": [
+                      "https://",
+                      {
+                        "Ref": "hostingS3AndCloudFrontS3BucketSecureURL"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Id": "hostingS3Bucket",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "origin-access-identity/cloudfront/",
+                      {
+                        "Ref": "OriginAccessIdentity"
+                      }
+                    ]
+                  ]
+                }
+              }
+            },
+            {
+              "DomainName": {
+                "Fn::If": [
+                  "CreateProdResources",
+                  "protiv-production-1421321210.us-east-1.elb.amazonaws.com",
+                  {
+                    "Fn::If": [
+                      "CreateTestResources",
+                      "protiv-test-1115229247.us-east-1.elb.amazonaws.com",
+                      {
+                        "Fn::If": [
+                          "CreateTestAuthResources",
+                          "testauth-449810325.us-east-1.elb.amazonaws.com",
+                          "testkiwi-430705049.us-east-1.elb.amazonaws.com"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Id": "protivProductionLoadBalancerId",
+              "CustomOriginConfig": {
+                "OriginProtocolPolicy": "http-only",
+                "OriginReadTimeout":60
+              }
+            }
+          ],
+          "Enabled": "true",
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "DELETE",
+              "GET",
+              "HEAD",
+              "OPTIONS",
+              "PATCH",
+              "POST",
+              "PUT"
+            ],
+            "TargetOriginId": "hostingS3Bucket",
+            "ForwardedValues": {
+              "QueryString": "false"
+            },
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "DefaultTTL": 86400,
+            "MaxTTL": 31536000,
+            "MinTTL": 60,
+            "Compress": true
+          },
+          "CacheBehaviors": [
+            {
+              "PathPattern": "api/grap*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "api/*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "zapier/*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "c2645963-61ed-4283-bab9-e188ca0fa55b",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "web*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "mail*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "graphql*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "graphiql*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "longpolling*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "*/static/*",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            },
+            {
+              "PathPattern": "base_import/set_file",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "TargetOriginId": "protivProductionLoadBalancerId",
+              "CachePolicyId": "2e54312d-136d-493c-8eb9-b001f22f67d2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "DefaultTTL": 86400,
+              "MaxTTL": 31536000,
+              "MinTTL": 60,
+              "Compress": true
+            }
+          ],
+          "DefaultRootObject": "index.html",
+          "CustomErrorResponses": [
+            {
+              "ErrorCachingMinTTL": 300,
+              "ErrorCode": 400,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/"
+            },
+            {
+              "ErrorCachingMinTTL": 300,
+              "ErrorCode": 403,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/"
+            },
+            {
+              "ErrorCachingMinTTL": 300,
+              "ErrorCode": 404,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/"
+            }
+          ]
+        }
+      }
+    },
+    "CloudFrontHostingRecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneName": "app.protiv.com.",
+        "Name": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Fn::If": [
+                  "CreateProdResources",
+                  "",
+                  {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "env"
+                        },
+                        "."
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "app.protiv.com"
+            ]
+          ]
+        },
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "CloudFrontDistribution",
+              "DomainName"
+            ]
+          },
+          "HostedZoneId": "Z2FDTNDATAQYW2"
+        }
+      }
+    }
+  },
+  "Outputs": {},
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"9.1.0\",\"stackType\":\"custom-customCloudformation\",\"metadata\":{}}"
+}

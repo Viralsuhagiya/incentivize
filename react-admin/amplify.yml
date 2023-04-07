@@ -1,0 +1,18 @@
+version: 1
+frontend:
+  phases:
+    build:
+      commands:
+        - echo "REACT_APP_AMPLIFY_ENV=$AWS_BRANCH" >> .env 
+        - amplify publish -y
+        - if [ "${AWS_BRANCH}" = "testkiwi" ]; then aws cloudfront create-invalidation --distribution-id E6504C58MTSL9 --paths "/*"; fi
+        - if [ "${AWS_BRANCH}" = "dev" ]; then aws cloudfront create-invalidation --distribution-id E34WURO7M99JRA --paths "/*"; fi
+        - if [ "${AWS_BRANCH}" = "prod" ]; then aws cloudfront create-invalidation --distribution-id EAS27CO4AC5E6 --paths "/*"; fi
+        - if [ "${AWS_BRANCH}" = "testauth" ]; then aws cloudfront create-invalidation --distribution-id E21SY4ONX4SPDX --paths "/*"; fi
+  artifacts:
+    # IMPORTANT - Please verify your build output directory
+    baseDirectory: /examples/protiv/build
+    files:
+      - '**/*'
+  cache:
+    paths: ["node_modules/**/*"]
